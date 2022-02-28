@@ -8,12 +8,14 @@
 
 int main(int argc, char **argv) {
 
-    int size;
+
     if(argc == 2){
         int size = atoi(argv[1]);
+
         if(size >= 2){
             try{
                 Stack* newstack =  new Stack(size);
+
                 std::string strtemp;
                 for(int i=1; i<size; i++){
                     rand_string(&strtemp);
@@ -22,27 +24,51 @@ int main(int argc, char **argv) {
                     if(newstack->push(i, &strtemp)){
                         std::cout << "Pushed!" << std::endl;
                     }else{
-                        std::cout << "Error, ID must be positive and string must not be empty." << std::endl;
+                        std::cerr << "Error, ID must be positive and string must not be empty." << std::endl;
                     }
                     std::cout << std::endl;
                 }
-
             }catch(...){
-                std::cout << "Invalid Length, Enter positive number greater than equal to 2" << std::endl;
+                std::cerr << "Invalid Length, Enter positive number greater than equal to 2" << std::endl;
             }
         }else{
-            std::cout << "Error: pass positive number greater than equal to 2" << std::endl;
+            std::cerr << "Error: pass positive number greater than equal to 2" << std::endl;
         }
     }else{
-        std::cout << "Error: Pass only one argument" << std::endl;
+        std::cerr << "Error: Must pass exactly one argument" << std::endl;
     }
 
 
+    // this is a programmer debug routine used for debugging during development
+    // and is normally not used for final testing but is shown here for demonstration
+  //  cout << "Dumping stack..." << endl;
+   // cout << "=====================================================" << endl;
+   // stack.dumpStack();
+
+
+
+
+
+
+
+
+
+
+
+
+
+//Explicit Testing
+    srand(time(NULL));
+    int rng;
+
+
+
+//Random Testing
 
 
     // here for the rand_string() function
     // if you don't use it, get rid of this
-    srand(time(NULL));
+    // srand(time(NULL));
 
     /* ***************************************************************
      * First get your arguments from the command line. Your program must
@@ -82,7 +108,7 @@ int main(int argc, char **argv) {
      * ***************************************************************/
     
     // make 20 random strings, store them, display them
-    std::string strtemp;
+  /*  std::string strtemp;
     for(int i=0; i<20; i++){
         rand_string(&strtemp);
         std::cout << strtemp << std::endl;

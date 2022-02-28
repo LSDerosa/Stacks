@@ -7,12 +7,12 @@
 
 bool Stack::push(int id, string* randStr){
     bool pushed = false;
-    if (top < size - 1){
-        stack[++top];
+    if (top < size){
         Data *data = new Data;
         data->id = id;
         cout << "id " << id << endl;   // Just for debug
         data->information = randStr;
+        stack[top++] = data;
         cout << "info " << randStr << endl;   // Just for debug
         cout << "inside push, top is now" << top << endl; // Just for debug
         pushed =true;
@@ -22,32 +22,28 @@ bool Stack::push(int id, string* randStr){
 
 
 bool Stack::pop(Data* popdata){
-    if (top < 0) {
-        throw -1; // throw an int because we cannot return one
+    bool popped = false;
+    if (top > 0) {
+        *popdata = *stack[--top];
+        delete stack[top];
+        popped = true;
     }
-    popdata->id = stack[top]->id;
-    popdata->information = stack[top]->information;
-    delete stack[top];
-    top--;
-    return true;
+    return popped;
 }
 
 bool Stack::isEmpty() {
-    return top < 0;
+    return top == 0;
 }
 
 
-/*
-bool Stack::peek(Data& popdata){
-    if (top < 0) {
-        throw -1; // throw an int because we cannot return one
+bool Stack::peek(Data* peekdata){
+    bool peeked = false;
+    if (top > 0) {
+        *peekdata = *stack[top-1];
+        peeked = true;
     }
-    peekdata.id = stack[top]->id; popdata.information = stack[top]->information;
-    delete stack[top];
-    top--;
-    return true;
+    return peeked;
 }
-*/
 
 
 

@@ -5,7 +5,6 @@
 
 #ifndef STACK_H
 #define STACK_H
-using namespace std;
 
 /*
  * there are no other includes here because they are not needed.
@@ -20,20 +19,22 @@ class Stack {
 public:
     bool pop(Data*);
 
-    bool peek(int, string *);
+    bool peek(Data*);
 
     bool push(int, string *);
 
     bool isEmpty();
 
     Stack(int size) {
-        Data* myDataArray2[size];
-        this->stack=myDataArray2;
+        stack = new Data* [size];
+        this->size = size;
+        top = 0;
     }
 
     ~Stack() {
-        for (int i = top; i >= 0; i--) {
-            delete stack[top];}
+        while (top>0) {
+            delete stack[--top];
+        }
         delete[] stack;
     }
 
@@ -54,6 +55,10 @@ private:
     int size;
     Data **stack;
 };
+
+
+using std::cout;
+using std::endl;
 
 #endif //STACK_H
 
