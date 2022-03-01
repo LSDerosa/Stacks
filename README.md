@@ -1,2 +1,2 @@
 # stack-starter
-Starter code for creating a simple stack.
+Dynamically allocated stack of pointers to data structs. 
